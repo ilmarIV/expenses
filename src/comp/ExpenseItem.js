@@ -1,12 +1,13 @@
 import './ExpenseItem.css' 
 
-const ExpenseItem = () => {
+const ExpenseItem = (props) => {
+
     return (
         <div className='expense-item'>
-            <div>date</div>
+            <div>{props.data.date.toString()}</div>
             <div className='expense-item__description'>
-                <h2>title</h2>
-                <p className='expense-item__price'>price</p>
+                <h2>{props.data.title}</h2>
+                <p className='expense-item__price'>{props.data.price}</p>
             </div>
         </div>
     )
