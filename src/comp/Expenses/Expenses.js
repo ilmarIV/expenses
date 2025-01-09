@@ -5,7 +5,7 @@ import ExpensesFilter from './ExpensesFilter';
 
 const Expenses = (props) => {
     const yearChangeHandler = (data) => {
-        console.log(`${data} at expenses`)
+        console.log(`${data} in expenses`)
     }
 
     return (
