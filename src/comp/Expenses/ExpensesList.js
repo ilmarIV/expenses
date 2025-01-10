@@ -1,3 +1,4 @@
+import './ExpensesList.css'
 import ExpenseItem from "./ExpenseItem"
 
 const ExpensesList = (props) => {
@@ -5,10 +6,16 @@ const ExpensesList = (props) => {
         <>
         {
             props.expenses.length
-            ? props.expenses.map((expense) => {
-                return <ExpenseItem data={expense} key={expense.id}/>
-            })
-            : <h2>No Expenses Found</h2>
+            ?
+            <ul className="expenses-list">
+                {
+                props.expenses.map((expense) => {
+                    return <ExpenseItem data={expense} key={expense.id}/>
+                })
+                }
+            </ul>
+            :
+            <p className="expenses-list__fallback">No Expenses Found</p>
         }
         </>
     )
