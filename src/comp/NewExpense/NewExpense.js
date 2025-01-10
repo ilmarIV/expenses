@@ -23,14 +23,12 @@ const NewExpense = (props) => {
     }
 
     return (
-        editForm
-        ?
         <div className="new-expense">
-            <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel={cancelButtonHandler}/>
-        </div>
-        :
-        <div className="new-expense">
-            <button type="reset" onClick={editFormHandler}>Add New Expense</button>
+            {
+                editForm
+                ? <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel={cancelButtonHandler}/>
+                : <button type="reset" onClick={editFormHandler}>Add New Expense</button>
+            }
         </div>
     )
 }
