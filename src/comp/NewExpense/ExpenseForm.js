@@ -1,25 +1,18 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import './ExpenseForm.css'
 
 const ExpenseForm = (props)=> {
-    const [enteredTitle, setEnteredTitle] = useState('')
-    const [enteredPrice, setEnteredPrice] = useState('')
-    const [enteredDate, setEnteredDate] = useState('')
 
-    const titleChangeHandler = (event) => {
-        setEnteredTitle(event.target.value)
-    }
-
-    const priceChangeHandler = (event) => {
-        setEnteredPrice(event.target.value)
-    }
-
-    const dateChangeHandler = (event) => {
-        setEnteredDate(event.target.value)
-    }
+    const titleInputReference = useRef()
+    const priceInpuitReference = useRef()
+    const dateInputReference = useRef()
 
     const submitHandler = (event) => {
         event.preventDefault()
+
+        const enteredTitle = titleInputReference.current.value
+        const enteredPrice = priceInpuitReference.current.value
+        const enteredDate = dateInputReference.current.value
 
         const expenseData = {
             title: enteredTitle,
@@ -29,19 +22,13 @@ const ExpenseForm = (props)=> {
 
         props.onSaveExpenseData(expenseData)
 
-        setEnteredTitle('')
-        setEnteredPrice('')
-        setEnteredDate('')
+        titleInputReference.current.value = ''
+        priceInpuitReference.current.value = ''
+        dateInputReference.current.value = ''
     }
 
     const cancelHandler = (event) => {
-        event.preventDefault()
-
         props.onCancel()
-
-        setEnteredTitle('')
-        setEnteredPrice('')
-        setEnteredDate('')
     }
 
     return (
@@ -51,16 +38,14 @@ const ExpenseForm = (props)=> {
                     <label>Title</label>
                     <input
                         type="text"
-                        onChange={titleChangeHandler}
-                        value={enteredTitle}
+                        ref={titleInputReference}
                     />
                 </div>
                 <div>
                     <label>Price</label>
                     <input
                         type="number"
-                        onChange={priceChangeHandler}
-                        value={enteredPrice}
+                        ref={priceInpuitReference}
                         min="0.01"
                         step="0.01"
                     />
@@ -69,8 +54,7 @@ const ExpenseForm = (props)=> {
                     <label>Date</label>
                     <input
                         type="date"
-                        onChange={dateChangeHandler}
-                        value={enteredDate}
+                        ref={dateInputReference}
                     />
                 </div>
             </div>
